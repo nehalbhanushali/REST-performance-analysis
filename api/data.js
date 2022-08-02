@@ -35,25 +35,21 @@ const apps = [
       id: 31,
       name: 'SAML',
       description: 'TBD',
-      users: [11, 13, 15]
     },
     {
       id: 32,
       name: 'MobileAuth',
       description: 'TEST',
-      users: [11, 12, 13, 14, 15, 16]
     },
     {
       id: 33,
       name: 'MAIL',
       description: 'Some description',
-      users: [11, 13, 14, 15]
     },
     {
       id: 34,
       name: 'Compute',
       description: 'try',
-      users: [11, 12, 15]
     },
   ]
   
