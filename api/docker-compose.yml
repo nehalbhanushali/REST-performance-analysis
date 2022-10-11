@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports: 
+      - '5432:5432'
+    volumes:
+      - restapp-db:/var/lib/postgresql/data
+
+  restapp:
+    build:
+      context: .
+    environment:
+      DB_SCHEMA: postgres
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: postgres
+    depends_on:
+      - postgres
+    ports:
+      - '8888:8888'
+
+volumes:
+  restapp-db:
