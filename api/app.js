@@ -1,8 +1,11 @@
-const express = require("express");
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-//const PORT = process.env.PORT || "8080";
-const PORT = "8888";
-const app = express();
+var app = express();
+
+var indexRouter = require('./routes/index');
 
 const userRouter = require('./routes/users');
 const groupRouter = require('./routes/groups');
@@ -14,10 +17,15 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
 app.use('/users', userRouter );
 app.use('/groups', groupRouter );
 app.use('/apps', appRouter );
 
-app.listen(parseInt(PORT, 10), () => {
-  console.log(`Listening for requests on http://localhost:${PORT}`);
-});
+module.exports = app;

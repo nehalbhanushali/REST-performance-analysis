@@ -21,7 +21,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - '8888:8888'
+      - '3000:3000'
 
 volumes:
   restapp-db:
